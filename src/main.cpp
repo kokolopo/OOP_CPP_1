@@ -1,9 +1,11 @@
 #include <iostream>
+#include <stdio.h>
+#include <array>
 #include <vector>
 
 using namespace std;
 
-
+// no 2
 // class IntPair
 // {
 //     public:
@@ -20,56 +22,111 @@ using namespace std;
 //         }
 // };
 
-class Point3d {
-    int m_x;
-    int m_y;
-    int m_z;
+//no 3
+// class Point3d {
+//     int m_x;
+//     int m_y;
+//     int m_z;
 
-    public:
-    void setValue(int a, int b, int c){
-        m_x = a;
-        m_y = b;
-        m_z = c;
+//     public:
+//     void setValue(int a, int b, int c){
+//         m_x = a;
+//         m_y = b;
+//         m_z = c;
+//     }
+
+//     bool isEqual(const Point3d& x){
+//         if (m_x == x.m_x && m_y == x.m_y && m_z == x.m_z)
+//         {
+//             return true;
+//         }else{
+//             return false;
+//         }   
+//     }
+
+//     void print(){
+//         cout <<"<"<<m_x<<", "<<m_y<<", "<<m_z<<">"<<endl;
+//     }
+// };
+
+//no 5
+class Stack
+{
+private:
+    array<int, 10> arrayAngka = {};
+    int keepSize = arrayAngka.size();
+
+public:
+    void reset(){
+        int i = keepSize - 1;
+        
+        for (i; i >= 0; i--){
+            if (arrayAngka[i] != 0){
+                arrayAngka[i] = 0;
+            }
+        }
     }
 
-    bool isEqual(const Point3d& x){
-        if (m_x == x.m_x && m_y == x.m_y && m_z == x.m_z)
-        {
-            return true;
-        }else{
-            return false;
-        }   
+    void push(int input){
+        int i=0;
+
+        for (i; i < keepSize; i++){
+            if (arrayAngka[i] == 0){
+                arrayAngka[i] = input;
+                break;
+            }
+        }
+    }
+
+    void pop(){
+        int i = keepSize - 1;
+        
+        for (i; i >= 0; i--){
+            if (arrayAngka[i] != 0){
+                arrayAngka[i] = 0;
+                break;
+            }
+        }
+        
     }
 
     void print(){
-        cout <<"<"<<m_x<<","<<m_y<<","<<m_z<<">"<<endl;
+        int i=0;
+        int j=0;
+        for (i; i < 1; i++){
+            cout<<"( ";
+            for(j; j < keepSize; j++){
+                if (arrayAngka[j] != 0){
+                    cout << arrayAngka[j]<<" ";
+                }
+            }
+            cout << ")" << endl;
+        }
     }
 };
 
+
 int main(int argc, char const *argv[])
-{
-    Point3d point1;
-    point1.setValue(1, 2, 3);
+{   
+    Stack stack;
+    stack.reset();
 
-    Point3d point2;
-    point2.setValue(1, 2, 3);
-
-    if (point1.isEqual(point2)){
-        cout << "point1 and point2 are equal" << endl;
-    }else{
-        cout << "point1 and point2 are not equal" << endl;
-    }
-
-    Point3d point3;
-    point3.setValue(3,4,5);
-
-    if (point1.isEqual(point3)){
-        cout << "point1 and point3 are equal" << endl;
-    }else{
-        cout << "point1 and point3 are not equal" << endl;
-    }
+    stack.print();
     
+    stack.push(5);
+    stack.push(3);
+    stack.push(8);
+    stack.print();
 
+    stack.pop();
+    stack.print();
+
+    stack.pop();
+    stack.pop();
+
+    stack.print();
     
     return 0;
 }
+
+
